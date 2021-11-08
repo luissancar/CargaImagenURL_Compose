@@ -17,7 +17,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,21 +40,22 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting() {
 
-    LazyColumn (modifier = Modifier.background(Color.Blue)
-        ) {
-        items(listaUrl()) {
-            url->
-            Box  (modifier = Modifier.fillMaxWidth()
-              ){
+    LazyColumn(
+        modifier = Modifier.background(Color.Blue)
+    ) {
+        items(listaUrl()) { url ->
+            Box(
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 CargarImagen(url = url)
             }
+        }
     }
-  }
 
 }
-fun listaUrl():Array<String>
-{
-    var lista= arrayOf<String>(
+
+fun listaUrl(): Array<String> {
+    var lista = arrayOf<String>(
         "https://www.google.es/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
         "https://csharpcorner-mindcrackerinc.netdna-ssl.com/article/kotlin-array-and-string2/Images/array.jpeg",
         "https://ep00.epimg.net/elpais/imagenes/2019/10/30/album/1572424649_614672_1572451730_album_normal.jpg",
@@ -68,34 +68,26 @@ fun listaUrl():Array<String>
         "https://ep00.epimg.net/elpais/imagenes/2019/10/30/album/1572424649_614672_1572451736_album_normal.jpg"
 
 
-
-
-
     )
     return lista
 }
 
 
-
 @Composable
-fun CargarImagen(url: String){
-           Image(
-               painter = rememberImagePainter(url),
-               contentDescription = "Imagen",
-               modifier = Modifier
-                   .fillMaxWidth()
-                   .padding(10.dp)
-                   .height(150.dp)
-                   .clip(RoundedCornerShape(100.dp)),
-               contentScale = ContentScale.FillWidth
+fun CargarImagen(url: String) {
+    Image(
+        painter = rememberImagePainter(url),
+        contentDescription = "Imagen",
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp)
+            .height(150.dp)
+            .clip(RoundedCornerShape(100.dp)),
+        contentScale = ContentScale.FillWidth
 
 
-
-
-
-
-        )
-    }
+    )
+}
 
 
 @Preview(showBackground = true)
