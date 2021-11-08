@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
 import com.example.cargaimagenurl_compose.ui.theme.CargaImagenURL_ComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -75,29 +76,26 @@ fun listaUrl():Array<String>
 }
 
 
+
 @Composable
 fun CargarImagen(url: String){
-    val image = LoadPicture(
-        url = url,
-        defaultImage = DEFAULT_RECIPE_IMAGE
-    ).value
-    image?.let { img ->
-        Image(
-            bitmap = img.asImageBitmap(),
-            contentDescription = "Localized description",
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp)
-                .height(150.dp)
-                .clip(RoundedCornerShape(100.dp)),
-            contentScale = ContentScale.FillWidth
+           Image(
+               painter = rememberImagePainter(url),
+               contentDescription = "Imagen",
+               modifier = Modifier
+                   .fillMaxWidth()
+                   .padding(10.dp)
+                   .height(150.dp)
+                   .clip(RoundedCornerShape(100.dp)),
+               contentScale = ContentScale.FillWidth
+
+
 
 
 
 
         )
     }
-}
 
 
 @Preview(showBackground = true)
